@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
-
+from django.contrib.auth.models import User
 from .forms import LoginForm
-
+from .forms import SignUpForm
 def loginView(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -34,3 +34,22 @@ def loginView(request):
 
 def succes(request):
     return render(request, 'registration/succes.html')
+
+def sign_up(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+       
+        
+        if form.is_valid():
+          
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            User.objects.create_user(username,email,password)
+            
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = SignUpForm()
+
+    return render(request, 'registration/signup.html', {'form': form})
