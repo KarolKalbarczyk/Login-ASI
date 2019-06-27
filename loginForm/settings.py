@@ -50,11 +50,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'loginForm.urls'
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'C:\Users\Karol\AppData\Local\Programs\Python\Python37\loginForm\loginForm\templates'],
+        'DIRS': [PROJECT_PATH + '/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
