@@ -10,7 +10,7 @@ def loginView(request):
     text = ''
     if request.method == 'POST':
         print(request.POST)
-        # create a form instance and populate it with data from the request:
+        # create a form instance and populate it with data from the request and request itself:
         form = LoginForm(request.POST,request)
         # check whether it's valid:
         text = form.is_valid()
